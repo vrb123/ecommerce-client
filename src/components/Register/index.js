@@ -1,42 +1,34 @@
 import React from 'react';
 import {Row,Col} from 'antd';
-import Register from './RegisterForm';
+import RegisterForm from './RegisterForm';
 
-export default () => {
+import {Redirect} from 'react-router-dom';
 
-    const registerUser = async data => {
-        try {
-            const response = await fetch("http://localhost:8024/api/v1/auth/register",{
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                  },
-                body: JSON.stringify(data)
-            });
-            if (response.status === 200) {
-                return {
-                    ok: true
-                }
-            }
-            throw new Error('Bad request');
-        }
-        catch(err) {
-            console.log(err);
-            return {
-                ok: false
-            }
-        } 
-        
-    };
+import {register} from '../../actions/user'
+
+import {connect} from 'react-redux'
+
+const Register = ({isAlreadyLoggedIn,register}) => {
+
+    if (isAlreadyLoggedIn === true) {
+        return <Redirect to="/home" />
+    }
 
     return  (
         <Row type="flex" align="middle" justify="center" style={{height:"100vh"}}>
             
             <Col xs={20} lg={6}>
-                <Register onSubmit={registerUser} />
+                <RegisterForm onSubmit={register} />
             </Col>
         
         </Row>
     );
 
 };
+
+const mapStateToProps = state => ({
+    isAlreadyLoggedIn: state.authReducer.loggedIn,
+})
+
+
+export default connect( mapStateToProps, {register} ) (Register)

@@ -1,9 +1,33 @@
 import React from 'react';
+import { Button } from 'antd';
+import {connect} from 'react-redux'
 
-export default () => {
+import {Redirect} from 'react-router-dom'
+
+import {logout} from '../../actions/auth'
+
+const Home = ({isLoggedIn,logout}) => {
+
+    if (!isLoggedIn) 
+        return <Redirect to="/login" />
+
+
     return (
         <div>
-            <h1>Hello</h1>
+            <Button
+                type="primary"
+                onClick={logout}
+                title="Logout"
+            >
+            Log out
+            </Button>
         </div>
     )
 };
+
+const mapStateToProps = state => ({
+    isLoggedIn: state.authReducer.loggedIn,
+})
+
+
+export default connect(mapStateToProps,{logout})(Home)
