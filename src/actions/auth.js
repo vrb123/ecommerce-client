@@ -2,11 +2,11 @@
 
 import config from '../config';
 import assertResponseOk from './assertResponseOk';
-import {USER_LOGIN_FAILURE,USER_LOGIN_SUCCESS,USER_LOGIN_REQUEST,USER_LOGOUT} from './types';
+import {USER_LOGIN_FAILURE,USER_LOGIN_SUCCESS,REQUEST_SEND,USER_LOGOUT} from './types';
 
 export const login = data => async dispatch => {
     dispatch({
-        type: USER_LOGIN_REQUEST,
+        type: REQUEST_SEND,
     })
     try {
         const response = await fetch(`${config.API_URL}/auth/login`,{
@@ -23,15 +23,20 @@ export const login = data => async dispatch => {
         
         localStorage.setItem('user',JSON.stringify(result) )
 
-        dispatch({
-            type: USER_LOGIN_SUCCESS,
-            payload: result
-        })
+        setTimeout( () => {
+            dispatch({
+                type: USER_LOGIN_SUCCESS,
+                payload: result
+            })
+        }, 1000 )
+        
     }
     catch(err) {
-       dispatch({
-           type: USER_LOGIN_FAILURE
-       })
+        setTimeout( () => {
+            dispatch({
+                type: USER_LOGIN_FAILURE
+            })
+        }, 1000 )
     } 
     
 };
