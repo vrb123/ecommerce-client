@@ -1,0 +1,36 @@
+import React from 'react';
+import {useRouteMatch,Switch} from 'react-router-dom'
+import UsersList from './UsersList';
+import { Row, Col } from 'antd';
+import {AdminRoute} from '../../AdminRoute';
+
+import UserEdit from './UserEdit';
+
+const AdminUsers = () => {
+
+    let { path } = useRouteMatch();
+
+    return (
+        <Row type="flex" align="middle" justify="center">
+            <Col xs={23}>         
+                <Switch>
+
+                    <AdminRoute 
+                        path={`${path}`}
+                        component={UsersList}
+                        exact
+                    />
+
+                    <AdminRoute 
+                        path={`${path}/edit/:id`}
+                        component={UserEdit} 
+                    />
+                
+                </Switch>
+            </Col>
+        </Row>
+    );
+    
+};
+
+export default AdminUsers;
