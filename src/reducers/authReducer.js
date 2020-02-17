@@ -1,4 +1,8 @@
-import {USER_LOGIN_SUCCESS,USER_LOGOUT,USER_LOGIN_FAILURE} from '../actions/types';
+import {
+    USER_LOGIN_SUCCESS,
+    USER_LOGOUT,
+    USER_LOGIN_FAILURE
+} from '../actions/types';
 
 const user = JSON.parse(localStorage.getItem('user'))
 const initialState = user ? { loggedIn: true, user } : {}
@@ -17,4 +21,4 @@ export default (state = initialState, action ) => {
         default: 
             return {...state}
     }
-}
+};
