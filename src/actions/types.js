@@ -13,8 +13,21 @@ export const ALERT_FAILURE = 'ALERT_FAILURE'
 export const ALERT_INFO = 'ALERT_INFO'
 
 
-// Verification
+// Verification action types
 
 export const ACCOUNT_VERIFICATION_SUCCESS = 'ACCOUNT_VERIFICATION_SUCCESS'
 export const ACCOUNT_VERIFICATION_FAILURE = 'ACCOUNT_VERIFICATION_FAILURE'
 
+
+// JWT actions types
+
+export const JWT_TOKEN_WRONG = 'JWT_TOKEN_WRONG';
+
+
+
+// ADMIN USER ACTIONS
+
+export const ADMIN_GET_USER_BY_ID = 'ADMIN_GET_USER_BY_ID'
+export const ADMIN_GET_ALL_USERS = 'ADMIN_GET_ALL_USERS'
+export const ADMIN_EDIT_USER = 'ADMIN_EDIT_USER'
+export const ADMIN_DELETE_USER = 'ADMIN_DELETE_USER'
