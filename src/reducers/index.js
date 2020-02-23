@@ -5,6 +5,10 @@ import loading from './loadingReducer'
 import accountVerification from './accountVerificationReducer'
 import adminUsers from './adminUsersReducer'
 import jwt from './jwtReducer'
+import specifications from './specificationsReducer'
+import adminProducts from './adminProductsReducer'
+import profile from './profileReducer'
+import customerProducts from './customerProductsReducer'
 
 export default combineReducers({
     authReducer: auth,
@@ -12,5 +16,9 @@ export default combineReducers({
     loadingReducer: loading,
     accountVerificationReducer: accountVerification,
     adminUsersReducer: adminUsers,
-    jwtReducer: jwt
-})
+    jwtReducer: jwt,
+    specificationsReducer: specifications,
+    adminProductsReducer: adminProducts,
+    profileReducer: profile,
+    customerProductsReducer: customerProducts
+});

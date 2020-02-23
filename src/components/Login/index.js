@@ -1,5 +1,5 @@
 import React from 'react';
-import {Row,Col} from 'antd';
+import {Col, Row} from 'antd';
 import LoginForm from './LoginForm';
 
 import {Redirect} from 'react-router-dom';
@@ -10,7 +10,7 @@ import {login} from '../../actions/auth'
 const Login = ({login,isAlreadyLoggedIn}) => {
 
     if (isAlreadyLoggedIn === true) {
-        return <Redirect to="/home" />
+        return <Redirect to="/"/>
     }
 
     return  (
@@ -27,6 +27,6 @@ const Login = ({login,isAlreadyLoggedIn}) => {
 
 const mapStateToProps = state => ({
     isAlreadyLoggedIn: state.authReducer.loggedIn
-})
+});
 
 export default connect(mapStateToProps,{login})(Login)

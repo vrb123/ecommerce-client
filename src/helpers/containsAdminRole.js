@@ -1,0 +1,1 @@
+export default roles => roles && roles.includes('ROLE_ADMIN');

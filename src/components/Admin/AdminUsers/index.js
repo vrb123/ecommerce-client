@@ -1,8 +1,8 @@
 import React from 'react';
-import {useRouteMatch,Switch} from 'react-router-dom'
+import {Switch, useRouteMatch} from 'react-router-dom'
 import UsersList from './UsersList';
-import { Row, Col } from 'antd';
-import {AdminRoute} from '../../AdminRoute';
+import {Col, Row} from 'antd';
+import AdminRoute from '../../AdminRoute';
 
 import UserEdit from './UserEdit';
 

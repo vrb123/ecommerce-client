@@ -11,7 +11,7 @@ export default ({onChange,options,selected}) => {
         <Select
             mode="multiple"
             placeholder="Select roles"
-           labelInValue
+            labelInValue
             value={selected}
             onChange={ newSelected => {
                 onChange(newSelected)

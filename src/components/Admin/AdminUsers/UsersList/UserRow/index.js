@@ -1,6 +1,6 @@
 import React from 'react'
 import {useRouteMatch} from 'react-router-dom'
-import {List,Skeleton} from 'antd'
+import {List, Skeleton} from 'antd'
 import UserStatus from './UserStatus'
 import UserActions from './UserActions'
 import UserRoles from './UserRoles'
@@ -26,17 +26,17 @@ export default ({onDelete,...user}) => {
             key={id} 
             actions={actions}
         >
-            <Skeleton title={false} loading={false} active>
-                
+            <Skeleton title={false} loading={false} key={id} active>
+
                 <List.Item.Meta
                     title={
                         <div>
-                            {firstName} {lastName} <UserStatus status={status} />
+                            {firstName} {lastName} <UserStatus status={status}/>
                         </div>
-                    } 
+                    }
                     description={email}
                 />
-                
+
                 <UserRoles roles={roles} />
 
             </Skeleton>

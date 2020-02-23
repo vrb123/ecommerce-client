@@ -2,14 +2,16 @@
 
 import config from '../config';
 import assertResponseOk from './assertResponseOk';
-import {USER_LOGIN_FAILURE,USER_LOGIN_SUCCESS,REQUEST_SEND,USER_LOGOUT} from './types';
+import {REQUEST_SEND, USER_LOGIN_FAILURE, USER_LOGIN_SUCCESS, USER_LOGOUT} from './types';
 
 export const login = data => async dispatch => {
+
     dispatch({
         type: REQUEST_SEND,
-    })
+    });
+
     try {
-        const response = await fetch(`${config.API_URL}/auth/login`,{
+        const response = await fetch(`${config.API_URL}/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -17,19 +19,22 @@ export const login = data => async dispatch => {
             body: JSON.stringify(data)
         });
 
-        assertResponseOk(response)
-        
-        const result = await response.json()
-        
-        localStorage.setItem('user',JSON.stringify(result) )
+        assertResponseOk(response);
 
-        setTimeout( () => {
+        const result = await response.json();
+
+        if (data.remember === true)
+            localStorage.setItem('user', JSON.stringify(result));
+        else
+            sessionStorage.setItem('user', JSON.stringify(result));
+
+        setTimeout(() => {
             dispatch({
                 type: USER_LOGIN_SUCCESS,
                 payload: result
             })
-        }, 1000 )
-        
+        }, 1000)
+
     }
     catch(err) {
         setTimeout( () => {
@@ -42,8 +47,8 @@ export const login = data => async dispatch => {
 };
 
 export const logout = () => async dispatch => {
-    localStorage.removeItem('user')
+    localStorage.removeItem('user');
     dispatch({
-        type:USER_LOGOUT
+        type: USER_LOGOUT
     })
 };
